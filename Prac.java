@@ -1,13 +1,6 @@
-package notes;
-
 /*
  	THE POINT WAS TO ROTATE THE OUTSIDE OF AN ARRAY AND KEEP THE INSIDE THE SAME
- 	THE ARRAY CAN BE ANY SIZE AS LONG AS ROW AND COLL ARE THE SAME SIZE 
- 	(OR THATS WHATS BEEN TESTED) FEEL FREE TO OPTOMIZE THE CODE AND MAKE IT BETTER
-
-
-
-
+ 	THE ARRAY CAN BE ANY SIZE FEEL FREE TO OPTOMIZE THE CODE AND MAKE IT BETTER
  */
 import java.util.Scanner;
 
@@ -53,16 +46,16 @@ public class Prac {
 		}
 		// last coll
 		for (int i = 1; i < ar.length; i++) {
-			if (retur[i][ar.length - 1] == 0) {
-				retur[i][ar.length - 1] = que[inser];
+			if (retur[i][ar[0].length - 1] == 0) {
+				retur[i][ar[0].length - 1] = que[inser];
 				inser++;
 			}
 			if (i + shift >= ar.length) {
-				que[count] = ar[i][ar.length - 1];
+				que[count] = ar[i][ar[0].length - 1];
 				count++;
 			} else {
 
-				retur[i + shift][ar.length - 1] = ar[i][ar.length - 1];
+				retur[i + shift][ar[0].length - 1] = ar[i][ar[0].length - 1];
 			}
 		}
 
@@ -109,7 +102,7 @@ public class Prac {
 		}
 		// last coll
 		for (int i = 1; i < ar.length; i++) {
-			if (retur[i][ar.length - 1] == 0) {
+			if (retur[i][ar[0].length - 1] == 0) {
 				retur[i][ar.length - 1] = que[inser];
 				inser++;
 			}
@@ -150,10 +143,18 @@ public class Prac {
 	public static void main(String[] args) {
 
 		// all variables
-		int[][] pass = { { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 },
-				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 },
-				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 },
-				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 } };
+//		int[][] pass = { { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 },
+//				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 },
+//				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 },
+//				{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 } };
+//		int[][] pass = { { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
+//				{ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9},
+//				{ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
+//				{ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, { 1, 2, 3, 4, 5, 6, 7, 8, 9 } };
+		int[][] pass = { { 1, 2, 3, 4, 5, 6, 7, 8}, { 1, 2, 3, 4, 5, 6, 7, 8 },
+				{ 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8},
+				{ 1, 2, 3, 4, 5, 6, 7, 8}, { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 },
+				{ 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8} };
 		// int[][] pass = {{1,2,3,4},{5,6,7,8},{9,1,2,3},{4,5,6,7}};
 		// int[][] pass = {{1,2,3},{4,5,6},{7,8,9}};
 
