@@ -1,9 +1,8 @@
-package Programming_Two.Work;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class classPractice {
+public class Main {
 
 	public static char[][] counter(char[][] board, char u) {
 		// getting and setting the board
@@ -46,14 +45,13 @@ public class classPractice {
 							}
 						}
 						if (i + 2 < b.length && x + 2 < b[0].length) {
-							if (b[i + 2][x + 2] != 'X' && b[i + 1][x + 1] == u && b[i + 2][x + 2] != 'O') { // down
-								// right
+							if (b[i + 2][x + 2] != 'X' && b[i + 1][x + 1] == u && b[i + 2][x + 2] != 'O') { // down right
 								b[i + 2][x + 2] = 'O';
 								return b;
 							}
 						}
 						if (i - 2 >= 0 && x + 2 < b[0].length) {
-							if (b[i - 2][x + 2] != 'X' && b[i - 1][x + 1] == u && b[i - 2][x + 2] != 'O') { // down left
+							if (b[i - 2][x + 2] != 'X' && b[i - 1][x + 1] == u && b[i - 2][x + 2] != 'O') { // up right
 								b[i - 2][x + 2] = 'O';
 								return b;
 							}
@@ -64,8 +62,8 @@ public class classPractice {
 								return b;
 							}
 						}
-						if (i + 1 < b.length - 1 && x - 1 > 0) {
-							if (b[i + 2][x - 2] != 'X' && b[i + 1][x - 1] == u && b[i + 2][x - 2] != 'O') { // up right
+						if (i + 2 < b.length && x - 2 >= 0) {
+							if (b[i + 2][x - 2] != 'X' && b[i + 1][x - 1] == u && b[i + 2][x - 2] != 'O') { // down left
 								b[i + 2][x - 2] = 'O';
 								return b;
 							}
@@ -102,29 +100,25 @@ public class classPractice {
 						}
 						if (i + 2 < b.length && x + 2 < b[0].length) {
 							if (b[i + 1][x + 1] != 'X' && b[i + 2][x + 2] == u && b[i + 1][x + 1] != u) { // down right
-
 								b[i + 1][x + 1] = 'O';
 								return b;
 							}
 						}
 						if (i - 2 >= 0 && x + 2 < b[0].length) {
-							if (b[i - 1][x + 1] != 'X' && b[i - 2][x + 2] == u && b[i - 1][x + 1] != u) { // down left
-
+							if (b[i - 1][x + 1] != 'X' && b[i - 2][x + 2] == u && b[i - 1][x + 1] != u) { // up right
 								b[i - 1][x + 1] = 'O';
 								return b;
 							}
 						}
-						if (i - 2 >= 0 && x - 2 >= 0) {
-							if (b[i - 1][x - 1] != 'X' && b[i - 2][x - 2] == u && b[i - 1][x - 1] != u) { // up left
-
-								b[i - 1][x - 1] = 'O';
+						if (i + 2 < b.length && x - 2 >= 0) {
+							if (b[i + 1][x - 1] != 'X' && b[i + 2][x - 2] == u && b[i + 1][x - 1] != u) { // down left
+								b[i + 1][x - 1] = 'O';
 								return b;
 							}
 						}
-						if (i + 2 < b.length - 1 && x - 2 >= 0) {
-							if (b[i + 1][x - 1] != 'X' && b[i + 2][x - 2] == u && b[i + 1][x - 1] != u) { // up right
-
-								b[i + 1][x - 1] = 'O';
+						if (i - 2 >= 0 && x - 2 >= 0) {
+							if (b[i - 1][x - 1] != 'X' && b[i - 2][x - 2] == u && b[i - 1][x - 1] != u) { // up right
+								b[i - 1][x - 1] = 'O';
 								return b;
 							}
 						}
@@ -133,7 +127,10 @@ public class classPractice {
 						b[0][0] = 'O';
 						return b;
 					}
-
+				}
+			}
+			for (int i = 0; i < b.length; i++) {
+				for (int x = 0; x < b[0].length; x++) {
 					// checking for counters
 					if (b[i][x] == 'X') {
 						if (i - 2 >= 0) {
@@ -342,6 +339,10 @@ public class classPractice {
 							}
 						}
 					}
+				}
+			}
+			for (int i = 0; i < b.length; i++) {
+				for (int x = 0; x < b[0].length; x++) {
 
 					// first move pick a corner if they pick middle
 					if (b[i][x] == 'O') {
@@ -449,125 +450,79 @@ public class classPractice {
 		return b;
 
 	}
-	
-	public static int findxy(int num, int x)
-	{
-		if(num == 1)
-		{
-			if(x == 0)
-			{
-				return 0;
-			}
-			if(x == 1)
-			{
+
+	public static int findxy(int num, int x) {
+		if (num == 1) {
+			if ((x == 0) || (x == 1)) {
 				return 0;
 			}
 		}
-		if(num == 1)
-		{
-			if(x == 0)
-			{
-				return 0;
-			}
-			if(x == 1)
-			{
+		if (num == 1) {
+			if ((x == 0) || (x == 1)) {
 				return 0;
 			}
 		}
-		if(num == 2)
-		{
-			if(x == 0)
-			{
+		if (num == 2) {
+			if (x == 0) {
 				return 0;
 			}
-			if(x == 1)
-			{
+			if (x == 1) {
 				return 1;
 			}
 		}
-		if(num == 3)
-		{
-			if(x == 0)
-			{
+		if (num == 3) {
+			if (x == 0) {
 				return 0;
 			}
-			if(x == 1)
-			{
+			if (x == 1) {
 				return 2;
 			}
 		}
-		if(num == 4)
-		{
-			if(x == 0)
-			{
+		if (num == 4) {
+			if (x == 0) {
 				return 1;
 			}
-			if(x == 1)
-			{
+			if (x == 1) {
 				return 0;
 			}
 		}
-		if(num == 5)
-		{
-			if(x == 0)
-			{
-				return 1;
-			}
-			if(x == 1)
-			{
+		if (num == 5) {
+			if ((x == 0) || (x == 1)) {
 				return 1;
 			}
 		}
-		if(num == 6)
-		{
-			if(x == 0)
-			{
+		if (num == 6) {
+			if (x == 0) {
 				return 1;
 			}
-			if(x == 1)
-			{
+			if (x == 1) {
 				return 2;
 			}
 		}
-		if(num == 7)
-		{
-			if(x == 0)
-			{
+		if (num == 7) {
+			if (x == 0) {
 				return 2;
 			}
-			if(x == 1)
-			{
+			if (x == 1) {
 				return 0;
 			}
 		}
-		if(num == 8)
-		{
-			if(x == 0)
-			{
+		if (num == 8) {
+			if (x == 0) {
 				return 2;
 			}
-			if(x == 1)
-			{
+			if (x == 1) {
 				return 1;
 			}
 		}
-		if(num == 9)
-		{
-			if(x == 0)
-			{
-				return 2;
-			}
-			if(x == 1)
-			{
+		if (num == 9) {
+			if ((x == 0) || (x == 1)) {
 				return 2;
 			}
 		}
-		
-		
-		
+
 		return 0;
 	}
-	
 
 	public static Boolean checkWin(char[][] b, char u) {
 		// this will go through the board and check every x or o
@@ -580,7 +535,7 @@ public class classPractice {
 							return true;
 						}
 					}
-					if (i - 2 > 0) {
+					if (i - 2 >= 0) {
 						if (b[i - 1][x] == u && b[i - 2][x] == u) { // down
 							return true;
 						}
@@ -590,7 +545,7 @@ public class classPractice {
 							return true;
 						}
 					}
-					if (x - 2 > 0) {
+					if (i - 2 >= 0) {
 						if (b[i - 1][x] == u && b[i - 2][x] == u) { // left
 							return true;
 						}
@@ -600,17 +555,17 @@ public class classPractice {
 							return true;
 						}
 					}
-					if (i - 2 > 0 && x + 2 < b[0].length) {
+					if (i - 2 >= 0 && x + 2 < b[0].length) {
 						if (b[i - 1][x + 1] == u && b[i - 2][x + 2] == u) { // down right
 							return true;
 						}
 					}
-					if (i - 2 > 0 && x - 2 >= 0) {
+					if (i - 2 >= 0 && x - 2 >= 0) {
 						if (b[i - 1][x - 1] == u && b[i - 2][x - 2] == u) { // down left
 							return true;
 						}
 					}
-					if (i + 2 < b.length - 1 && x - 2 > 0) {
+					if (i + 2 < b.length && x - 2 >= 0) {
 						if (b[i + 1][x - 1] == u && b[i + 2][x - 2] == u) { // up left
 							return true;
 						}
@@ -641,13 +596,13 @@ public class classPractice {
 
 	public static String gameLoop(int player1, int player2) {
 		// all vars
-		char[][] board = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
 		Boolean u1 = false;
 		Boolean u2 = false;
-		Boolean check = false;
-		Boolean end = false;
+		boolean check = false;
+		boolean end = false;
 		Scanner input = new Scanner(System.in);
-		int spot =0;
+		int spot = 0;
 		int xx = 0;
 		int yy = 0;
 
@@ -655,13 +610,13 @@ public class classPractice {
 		printBoard(board);
 
 		// main game loop
-		while (end == false) {
+		while (!end) {
 			int count = 0;
 
 			// ask for input on user 1 turn
 			System.out.println("User 1 turn");
-			while (check == false) {
-				
+			while (!check) {
+
 				System.out.println("pick a spot");
 				spot = input.nextInt();
 				xx = findxy(spot, 0);
@@ -677,14 +632,14 @@ public class classPractice {
 			// board = counter(board, 'X');
 			printBoard(board);
 			u1 = checkWin(board, 'X');
-			if (u1 == true) {
+			if (u1) {
 				return "user 1 won";
 			}
 
 			// checks to see if all spots are filled
-			for (int i = 0; i < board.length; i++) {
+			for (char[] element : board) {
 				for (int x = 0; x < board[0].length; x++) {
-					if (board[i][x] == 'X' || board[i][x] == 'O') {
+					if (element[x] == 'X' || element[x] == 'O') {
 
 						count++;
 					}
@@ -700,7 +655,7 @@ public class classPractice {
 			check = false;
 			// asks for input from user 2
 			System.out.println("User 2 turn");
-			while (check == false) {
+			while (!check) {
 				System.out.println("pick a spot");
 				spot = input.nextInt();
 				xx = findxy(spot, 0);
@@ -716,13 +671,13 @@ public class classPractice {
 			// board = counter(board, 'O');
 			printBoard(board);
 			u2 = checkWin(board, 'O');
-			if (u2 == true) {
+			if (u2) {
 				return "user 2 won";
 			}
 
-			for (int i = 0; i < board.length; i++) {
+			for (char[] element : board) {
 				for (int x = 0; x < board[0].length; x++) {
-					if (board[i][x] == 'X' || board[i][x] == 'O') {
+					if (element[x] == 'X' || element[x] == 'O') {
 						count++;
 					}
 					if (count == 9) {
@@ -741,22 +696,21 @@ public class classPractice {
 
 	public static String gameLoop(int players) {
 		// all vars
-		char[][] board = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
 		Boolean u1 = false;
 		Boolean u2 = false;
-		Boolean check = false;
-		Boolean end = false;
+		boolean check = false;
+		boolean end = false;
 		Scanner input = new Scanner(System.in);
 		int xx = 0;
 		int yy = 0;
-		int spot =0;
-		
+		int spot = 0;
 
 		// prints the beginning board
 		printBoard(board);
 
 		// main game loop
-		while (end == false) {
+		while (!end) {
 			int count = 0;
 
 			// ask for input on user 1 turn
@@ -767,7 +721,7 @@ public class classPractice {
 			}
 			if (players == 1) {
 				System.out.println("User 1 turn");
-				while (check == false) {
+				while (!check) {
 					System.out.println("pick a spot");
 					spot = input.nextInt();
 					xx = findxy(spot, 0);
@@ -780,14 +734,14 @@ public class classPractice {
 			}
 			printBoard(board);
 			u1 = checkWin(board, 'X');
-			if (u1 == true) {
+			if (u1) {
 				return "user 1 won";
 			}
 
 			// checks to see if all spots are filled
-			for (int i = 0; i < board.length; i++) {
+			for (char[] element : board) {
 				for (int x = 0; x < board[0].length; x++) {
-					if (board[i][x] == 'X' || board[i][x] == 'O') {
+					if (element[x] == 'X' || element[x] == 'O') {
 
 						count++;
 					}
@@ -809,7 +763,7 @@ public class classPractice {
 			}
 			if (players == 2) {
 				System.out.println("User 2 turn");
-				while (check == false) {
+				while (!check) {
 					System.out.println("pick a spot");
 					spot = input.nextInt();
 					xx = findxy(spot, 0);
@@ -823,13 +777,13 @@ public class classPractice {
 			}
 			printBoard(board);
 			u2 = checkWin(board, 'O');
-			if (u2 == true) {
+			if (u2) {
 				return "user 2 won";
 			}
 
-			for (int i = 0; i < board.length; i++) {
+			for (char[] element : board) {
 				for (int x = 0; x < board[0].length; x++) {
-					if (board[i][x] == 'X' || board[i][x] == 'O') {
+					if (element[x] == 'X' || element[x] == 'O') {
 						count++;
 					}
 					if (count == 9) {
@@ -848,11 +802,11 @@ public class classPractice {
 
 	public static String gameLoop() {
 		// all vars
-		char[][] board = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};;
+		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
 		Boolean u1 = false;
 		Boolean u2 = false;
-		Boolean check = false;
-		Boolean end = false;
+		boolean check = false;
+		boolean end = false;
 		Scanner input = new Scanner(System.in);
 		int xx = 0;
 		int yy = 0;
@@ -860,7 +814,7 @@ public class classPractice {
 		printBoard(board);
 
 		// main game loop
-		while (end == false) {
+		while (!end) {
 			int count = 0;
 			//
 			// // ask for input on user 1 turn
@@ -882,14 +836,14 @@ public class classPractice {
 			board = counter(board, 'X');
 			printBoard(board);
 			u1 = checkWin(board, 'X');
-			if (u1 == true) {
+			if (u1) {
 				return "user 1 won";
 			}
 
 			// checks to see if all spots are filled
-			for (int i = 0; i < board.length; i++) {
+			for (char[] element : board) {
 				for (int x = 0; x < board[0].length; x++) {
-					if (board[i][x] == 'X' || board[i][x] == 'O') {
+					if (element[x] == 'X' || element[x] == 'O') {
 
 						count++;
 					}
@@ -922,13 +876,13 @@ public class classPractice {
 			board = counter(board, 'O');
 			printBoard(board);
 			u2 = checkWin(board, 'O');
-			if (u2 == true) {
+			if (u2) {
 				return "user 2 won";
 			}
 
-			for (int i = 0; i < board.length; i++) {
+			for (char[] element : board) {
 				for (int x = 0; x < board[0].length; x++) {
-					if (board[i][x] == 'X' || board[i][x] == 'O') {
+					if (element[x] == 'X' || element[x] == 'O') {
 						count++;
 					}
 					if (count == 9) {
@@ -975,9 +929,14 @@ public class classPractice {
 				String winner = gameLoop(1, 2);
 				System.out.println(winner);
 			}
-
+			
 			System.out.println("would you like to play again 0 for yes 1 for no");
 			end = input.nextInt();
+			while(end > 1 || end < 0)
+			{
+				System.out.println("would you like to play again 0 for yes 1 for no");
+				end = input.nextInt();
+			}
 		}
 
 	}
