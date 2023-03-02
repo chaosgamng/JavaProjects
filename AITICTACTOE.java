@@ -4,6 +4,115 @@ import java.util.Scanner;
 
 public class Main {
 
+	public static String Challenge(int num) {
+		System.out.println("Challenge worked");
+		// all vars
+		int size = 3 + num;
+		char[][] b = createBoard(size);
+		char[][] board = new char[size][size];
+		for (int i = 0; i < board.length; i++) {
+			for (int x = 0; x < board[0].length; x++) {
+				board[i][x] = b[i][x];
+			}
+		}
+		Boolean u1 = false;
+		Boolean u2 = false;
+		boolean check = false;
+		boolean end = false;
+		Scanner input = new Scanner(System.in);
+		int xx = 0;
+		int yy = 0;
+		// prints the beginning board
+		printBoard(board);
+
+		// main game loop
+		while (!end) {
+			int count = 0;
+			board = counter(board, 'X');
+			printBoard(board);
+			u1 = checkWin(board, 'X');
+			if (u1) {
+				return "user 1 won";
+			}
+
+			// checks to see if all spots are filled
+			for (char[] element : board) {
+				for (int x = 0; x < board[0].length; x++) {
+					if (element[x] == 'X' || element[x] == 'O') {
+
+						count++;
+					}
+					if (count == 9) {
+						return "tie";
+					}
+				}
+
+			}
+			count = 0;
+
+			// changes check to false so it will ask for input again
+			// check = false;
+			// // asks for input from user 2
+			// System.out.println("User 2 turn");
+			// while (check == false) {
+			// System.out.println("pick a x pos");
+			// xx = input.nextInt();
+			// System.out.println("pick a y spot");
+			// yy = input.nextInt();
+			//
+			// if (xx < board[0].length && yy < board.length && board[xx][yy] != 'X' &&
+			// board[xx][yy] != 'O') {
+			// board[xx][yy] = 'O';
+			// check = true;
+			// }
+			// }
+			//
+			// // checks to see if user 2 won if true end game
+			board = counter(board, 'O');
+			printBoard(board);
+			u2 = checkWin(board, 'O');
+			if (u2) {
+				return "user 2 won";
+			}
+
+			for (char[] element : board) {
+				for (int x = 0; x < board[0].length; x++) {
+					if (element[x] == 'X' || element[x] == 'O') {
+						count++;
+					}
+					if (count == 9) {
+						return "tie";
+					}
+				}
+
+			}
+			// check = false;
+
+		}
+		// this is not used
+		input.close();
+		return "";
+
+	}
+
+	public static char[][] createBoard(int size) {
+		int count = 1;
+		String nums = "";
+		char[][] b = new char[size][size];
+		for (int i = 0; i < b.length; i++) {
+			for (int x = 0; x < b[0].length; x++) {
+				nums += count;
+				b[i][x] = nums.charAt(count-1);
+				count++;
+				if(count == 10)
+				{
+					count = 1;
+				}
+			}
+		}
+		return b;
+	}
+
 	public static char[][] counter(char[][] board, char u) {
 		// getting and setting the board
 		char[][] b = new char[board.length][board[0].length];
@@ -45,7 +154,8 @@ public class Main {
 							}
 						}
 						if (i + 2 < b.length && x + 2 < b[0].length) {
-							if (b[i + 2][x + 2] != 'X' && b[i + 1][x + 1] == u && b[i + 2][x + 2] != 'O') { // down right
+							if (b[i + 2][x + 2] != 'X' && b[i + 1][x + 1] == u && b[i + 2][x + 2] != 'O') { // down
+																											// right
 								b[i + 2][x + 2] = 'O';
 								return b;
 							}
@@ -394,7 +504,7 @@ public class Main {
 								return b;
 							}
 						}
-						if (i + 1 < b.length - 1 && x - 1 > 0) {
+						if (i + 2 < b.length && x - 2 >= 0) {
 							if (b[i + 1][x - 1] == 'O' && b[i + 2][x - 2] != u) { // up right
 								b[i + 2][x - 2] = 'X';
 								return b;
@@ -451,77 +561,23 @@ public class Main {
 
 	}
 
-	public static int findxy(int num, int x) {
-		if (num == 1) {
-			if ((x == 0) || (x == 1)) {
-				return 0;
-			}
-		}
-		if (num == 1) {
-			if ((x == 0) || (x == 1)) {
-				return 0;
-			}
-		}
-		if (num == 2) {
-			if (x == 0) {
-				return 0;
-			}
-			if (x == 1) {
-				return 1;
-			}
-		}
-		if (num == 3) {
-			if (x == 0) {
-				return 0;
-			}
-			if (x == 1) {
-				return 2;
-			}
-		}
-		if (num == 4) {
-			if (x == 0) {
-				return 1;
-			}
-			if (x == 1) {
-				return 0;
-			}
-		}
-		if (num == 5) {
-			if ((x == 0) || (x == 1)) {
-				return 1;
-			}
-		}
-		if (num == 6) {
-			if (x == 0) {
-				return 1;
-			}
-			if (x == 1) {
-				return 2;
-			}
-		}
-		if (num == 7) {
-			if (x == 0) {
-				return 2;
-			}
-			if (x == 1) {
-				return 0;
-			}
-		}
-		if (num == 8) {
-			if (x == 0) {
-				return 2;
-			}
-			if (x == 1) {
-				return 1;
-			}
-		}
-		if (num == 9) {
-			if ((x == 0) || (x == 1)) {
-				return 2;
+	public static int findxy(int num, int x, char[][] b) {
+		for (int i = 0; i < b.length; i++) {
+			for (int xx = 0; xx < b[0].length; xx++) {
+				char temp = (char) (num + '0');
+				if (b[i][xx] == temp) {
+					if (x == 0) {
+						return i;
+					}
+					if (x == 1) {
+						return xx;
+					}
+				}
 			}
 		}
 
 		return 0;
+
 	}
 
 	public static Boolean checkWin(char[][] b, char u) {
@@ -586,9 +642,14 @@ public class Main {
 				}
 			}
 			System.out.println();
-			if (i < board.length - 1) {
-				System.out.println("-----");
+			for(int xxxx = 0; xxxx < board.length;xxxx++)
+			{
+				System.out.print("--");
 			}
+			System.out.println();
+
+			
+			
 		}
 		System.out.println();
 
@@ -596,12 +657,12 @@ public class Main {
 
 	public static String gameLoop(int player1, int player2) {
 		// all vars
-		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+		Scanner input = new Scanner(System.in);
+		char[][] board = createBoard(3);
 		Boolean u1 = false;
 		Boolean u2 = false;
 		boolean check = false;
 		boolean end = false;
-		Scanner input = new Scanner(System.in);
 		int spot = 0;
 		int xx = 0;
 		int yy = 0;
@@ -619,8 +680,8 @@ public class Main {
 
 				System.out.println("pick a spot");
 				spot = input.nextInt();
-				xx = findxy(spot, 0);
-				yy = findxy(spot, 1);
+				xx = findxy(spot, 0, board);
+				yy = findxy(spot, 1, board);
 
 				if (xx < board[0].length && yy < board.length && board[xx][yy] != 'O' && board[xx][yy] != 'X') {
 					board[xx][yy] = 'X';
@@ -658,8 +719,8 @@ public class Main {
 			while (!check) {
 				System.out.println("pick a spot");
 				spot = input.nextInt();
-				xx = findxy(spot, 0);
-				yy = findxy(spot, 1);
+				xx = findxy(spot, 0, board);
+				yy = findxy(spot, 1, board);
 
 				if (xx < board[0].length && yy < board.length && board[xx][yy] != 'X' && board[xx][yy] != 'O') {
 					board[xx][yy] = 'O';
@@ -681,6 +742,7 @@ public class Main {
 						count++;
 					}
 					if (count == 9) {
+
 						return "tie";
 					}
 				}
@@ -696,7 +758,7 @@ public class Main {
 
 	public static String gameLoop(int players) {
 		// all vars
-		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+		char[][] board = createBoard(3);
 		Boolean u1 = false;
 		Boolean u2 = false;
 		boolean check = false;
@@ -724,8 +786,8 @@ public class Main {
 				while (!check) {
 					System.out.println("pick a spot");
 					spot = input.nextInt();
-					xx = findxy(spot, 0);
-					yy = findxy(spot, 1);
+					xx = findxy(spot, 0, board);
+					yy = findxy(spot, 1, board);
 					if (xx < board[0].length && yy < board.length && board[xx][yy] != 'X' && board[xx][yy] != 'O') {
 						board[xx][yy] = 'X';
 						check = true;
@@ -766,8 +828,8 @@ public class Main {
 				while (!check) {
 					System.out.println("pick a spot");
 					spot = input.nextInt();
-					xx = findxy(spot, 0);
-					yy = findxy(spot, 1);
+					xx = findxy(spot, 0, board);
+					yy = findxy(spot, 1, board);
 
 					if (xx < board[0].length && yy < board.length && board[xx][yy] != 'X' && board[xx][yy] != 'O') {
 						board[xx][yy] = 'O';
@@ -802,7 +864,13 @@ public class Main {
 
 	public static String gameLoop() {
 		// all vars
-		char[][] board = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+		char[][] b = createBoard(3);
+		char[][] board = new char[3][3];
+		for (int i = 0; i < board.length; i++) {
+			for (int x = 0; x < board[0].length; x++) {
+				board[i][x] = b[i][x];
+			}
+		}
 		Boolean u1 = false;
 		Boolean u2 = false;
 		boolean check = false;
@@ -908,9 +976,9 @@ public class Main {
 
 		while (end == 0) {
 
-			System.out.println("how many players do you have 0 - 2");
+			System.out.println("how many players do you have 0 - 2 or 3 for ai challenege");
 			player = input.nextInt();
-			while (player > 2 || player < 0) {
+			while (player > 3 || player < 0) {
 				System.out.println("how many players do you have 0 - 2");
 				player = input.nextInt();
 			}
@@ -929,11 +997,16 @@ public class Main {
 				String winner = gameLoop(1, 2);
 				System.out.println(winner);
 			}
-			
+			if (player == 3) {
+				for (int i = 0; i < 4; i++) {
+					String winner = Challenge(i);
+					System.out.println(winner);
+				}
+			}
+
 			System.out.println("would you like to play again 0 for yes 1 for no");
 			end = input.nextInt();
-			while(end > 1 || end < 0)
-			{
+			while (end > 1 || end < 0) {
 				System.out.println("would you like to play again 0 for yes 1 for no");
 				end = input.nextInt();
 			}
