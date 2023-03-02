@@ -49,25 +49,6 @@ public class Main {
 
 			}
 			count = 0;
-
-			// changes check to false so it will ask for input again
-			// check = false;
-			// // asks for input from user 2
-			// System.out.println("User 2 turn");
-			// while (check == false) {
-			// System.out.println("pick a x pos");
-			// xx = input.nextInt();
-			// System.out.println("pick a y spot");
-			// yy = input.nextInt();
-			//
-			// if (xx < board[0].length && yy < board.length && board[xx][yy] != 'X' &&
-			// board[xx][yy] != 'O') {
-			// board[xx][yy] = 'O';
-			// check = true;
-			// }
-			// }
-			//
-			// // checks to see if user 2 won if true end game
 			board = counter(board, 'O');
 			printBoard(board);
 			u2 = checkWin(board, 'O');
@@ -86,7 +67,6 @@ public class Main {
 				}
 
 			}
-			// check = false;
 
 		}
 		// this is not used
@@ -326,8 +306,8 @@ public class Main {
 			xx = xxx.nextInt(board.length);
 			yy = xxx.nextInt(board[0].length);
 			while (b[xx][yy] == 'O' || b[xx][yy] == 'X') {
-				xx = xxx.nextInt(3);
-				yy = xxx.nextInt(3);
+				xx = xxx.nextInt(board.length);
+				yy = xxx.nextInt(board[0].length);
 			}
 			b[xx][yy] = 'O';
 			// for (int ii = 0; ii < board.length; ii++) {
@@ -413,7 +393,7 @@ public class Main {
 						}
 						if (x + 2 < b[0].length) {
 
-							if (b[i][x + 1] != 'O' && b[i][x + 2] == u && b[i + 1][x] != u) { // right
+							if (b[i][x + 1] != 'O' && b[i][x + 2] == u && b[i][x+1] != u) { // right
 								b[i][x + 1] = 'X';
 								return b;
 							}
@@ -542,11 +522,11 @@ public class Main {
 			int xx = 0;
 			int yy = 0;
 			Random xxx = new Random();
-			xx = xxx.nextInt(3);
-			yy = xxx.nextInt(3);
+			xx = xxx.nextInt(board.length);
+			yy = xxx.nextInt(board[0].length);
 			while (b[xx][yy] == 'O' || b[xx][yy] == 'X') {
-				xx = xxx.nextInt(3);
-				yy = xxx.nextInt(3);
+				xx = xxx.nextInt(board.length);
+				yy = xxx.nextInt(board[0].length);
 			}
 			b[xx][yy] = 'X';
 			// for (int ii = 0; ii < board.length; ii++) {
